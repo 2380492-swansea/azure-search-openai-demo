@@ -45,6 +45,14 @@ export async function chatApi(request: ChatAppRequest, idToken: string | undefin
     });
 }
 
+export async function fileApi(request: FormData, idToken: string | undefined): Promise<Response> {
+    return await fetch(`${BACKEND_URI}/extract_text`, {
+        method: "POST",
+        headers: { ...getHeaders(idToken) },
+        body: request
+    });
+}
+
 export function getCitationFilePath(citation: string): string {
     return `${BACKEND_URI}/content/${citation}`;
 }
